@@ -160,6 +160,10 @@ gcc test.c
 ```
 ./a.out
 ```
+- Them check the information in kernal
+```
+dmesg
+```
 ![image](https://github.com/CodeStone1125/CustomKernal/assets/72511296/f203b22a-e055-4ed8-81c7-00a41dc61204)
 
 ### System call
