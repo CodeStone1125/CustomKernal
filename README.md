@@ -1,11 +1,13 @@
 # linux-kernel
-Modified Version of Linux Kernel
+Modified version Kernel. The homework 1 for NYCU OS AUT2023
 
+1. Change kernel suffix
+2.  Implement "sys_hello" ,"sys_revstr"
 ## Installation
 ### Before Installation
 ```
 ajmi@burner:~$ uname -mrs
-Linux 5.13.0-1031-azure x86_64
+Linux 5.19.12 x86_64
 ```
 
 ### Install Requirements
