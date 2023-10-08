@@ -1,41 +1,46 @@
 # linux-kernel
 Modified version Kernel. The homework 1 for NYCU OS AUT2023
 
+### Requirement
 1. Change kernel suffix
-2.  Implement "sys_hello" ,"sys_revstr"
+2.  Implement ```sys_hello``` ,```sys_revstr```
+
 ## Installation
 ### Before Installation
 ```
-ajmi@burner:~$ uname -mrs
+uname -mrs
 Linux 5.19.12 x86_64
 ```
 
 ### Install Requirements
 ```
-sudo apt update
-sudo apt upgrade
-sudo apt install build-essential libncurses-dev bison flex libssl-dev libelf-dev dwarves zstd
+sudo apt update && sudo apt upgrade
+sudo apt install gcc build-essential libncurses-dev bison flex libssl-dev libelf-dev dwarves -y 
 ```
 
-### Clone Linux Kernel Repository
+### Clone Linux Kernel
 ```
-git clone https://github.com/JameelKaisar/linux-kernel.git
+wget -P ~/ https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.19.12.tar.xz.
 ```
 
 ### Change Directory
 ```
-cd linux-kernel
+tar -xvf ~/linux-5.19.12.tar.xz -C ~/
+sudo reboot
+cd linux-5.19.12
 ```
 
-### Copy Config File
+### Create system folder 
 ```
-cp -v /boot/config-$(uname -r) .config
+mkdir hello
+mkdir revstr
 ```
 
-### Modify Config File
+### Implement ```sys_hello```
 ```
-sudo make menuconfig
+gedit helloworld/helloworld.c
 ```
+
 - Save and Exit
 
 ### Edit Config File
