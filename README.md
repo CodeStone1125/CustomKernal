@@ -37,12 +37,67 @@ mkdir revstr
 ```
 
 ### Implement ```sys_hello```
+- Note: Implementation for ```sys_revstr``` is the same procedure.
 ```
 gedit helloworld/helloworld.c
 ```
+-Them code it
+```
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/syscalls.h>
 
+SYSCALL_DEFINE0(hello)
+{
+    printk(KERN_INFO "Hello, world!\n");
+    printk(KERN_INFO "XXXXXXXXXX\n");
+    return 0;
+}
+EXPORT_SYMBOL(__x64_sys_hello);
+```
+- Make makefile
+```
+gedit helloworld/Makefile
+```
+- Save and Exit
+- add
+```
+obj-y := helloworld.o
+```
 - Save and Exit
 
+### Implement ```sys_revstr```
+```
+#include <linux/kernel.h>
+#include <linux/syscalls.h>
+#include <linux/uaccess.h> // Required for copy_from_user
+
+SYSCALL_DEFINE2(revstr, char *, str, int, n)
+
+{
+    char *s;
+    int x;
+    char t;
+    long res;
+    printk(KERN_INFO "The original string:%s!\n",str);
+    s = kmalloc_array(n, sizeof(char), GFP_KERNEL);
+    res = strncpy_from_user(s, str, n);
+    if (res < 0) return -EFAULT;
+    x = strnlen_user(str, n) - 1;
+    for (int i=0; i<x/2; i++) {
+        t = *(s + i);
+        *(s + i) = *(s + x-1 - i);
+        *(s + x-1 - i) = t;
+    }
+    res = copy_to_user(str, s, n);
+    printk(KERN_INFO "The reverse string:%s!\n",s);
+    if (res < 0) return -EFAULT;
+    kfree(s);
+    return 0;
+}
+EXPORT_SYMBOL(__x64_sys_revstr);
+```
+- Save and Exit
 ### Edit Config File
 ```
 sudo nano .config
