@@ -20,7 +20,7 @@ sudo apt install gcc build-essential libncurses-dev bison flex libssl-dev libelf
 
 ### Clone Linux Kernel
 ```
-wget -P ~/ https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.19.12.tar.xz.
+wget -P ~/ https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.19.12.tar.xz
 ```
 
 ### Change Directory
